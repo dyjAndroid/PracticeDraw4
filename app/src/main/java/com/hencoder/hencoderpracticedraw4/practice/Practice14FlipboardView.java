@@ -73,6 +73,16 @@ public class Practice14FlipboardView extends View {
         int y = centerY - bitmapHeight / 2;
 
         canvas.save();
+        canvas.clipRect(x, y, x + bitmapWidth, y + bitmapHeight/2);
+        canvas.drawBitmap(bitmap, x, y, paint);
+        canvas.restore();
+        canvas.save();
+
+        if (degree>90){
+            canvas.clipRect(x, y, x + bitmapWidth, y + bitmapHeight/2);
+        }else {
+            canvas.clipRect(0, centerY, getWidth(), getHeight());
+        }
 
         camera.save();
         camera.rotateX(degree);
@@ -83,5 +93,6 @@ public class Practice14FlipboardView extends View {
 
         canvas.drawBitmap(bitmap, x, y, paint);
         canvas.restore();
+
     }
 }
